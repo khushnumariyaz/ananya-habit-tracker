@@ -1,6 +1,6 @@
 from datetime import date, datetime
 
-from sqlalchemy import Boolean, Date, DateTime, Integer, String, Text
+from sqlalchemy import Boolean, Date, DateTime, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
@@ -13,6 +13,13 @@ class Habit(Base):
         Integer,
         primary_key=True,
         index=True
+    )
+
+    user_id: Mapped[int] = mapped_column(
+        ForeignKey("users.id"),
+        nullable=False,
+        default=1,
+        index=True,
     )
 
     name: Mapped[str] = mapped_column(
@@ -64,6 +71,11 @@ class Habit(Base):
         "HabitSchedule",
         back_populates="habit",
         cascade="all, delete-orphan"
+    )
+
+    user = relationship(
+        "User",
+        back_populates="habits",
     )
 
     completions = relationship(

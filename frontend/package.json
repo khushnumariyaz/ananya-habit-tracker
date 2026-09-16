@@ -1,0 +1,9 @@
+{
+  "name": "ananya-habit-tracker-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static frontend for Ananya's 75-day habit tracker",
+  "scripts": {
+    "check": "node --check app.js"
+  }
+}
